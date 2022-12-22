@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useAuth from '../../../hooks/useAuth'
 
 const Header = () => {
+  const {
+    authStatus,
+    logout,
+    login,
+  } = useAuth();
+
   return (
     <div>
       <header className="header">
@@ -14,8 +21,8 @@ const Header = () => {
             </div>
             <div className="top-header-right">
               <ul>
-                <li><a href="#"><i className="fa fa-key" /> LOGIN</a></li>
-                <li><a href="#"><i className="fa fa-user" /> REGISTER</a></li>
+                <li><Link to='/login'><i className="fa fa-key" /> LOGIN</Link></li>
+                <li><Link to='/register'><i className="fa fa-user" /> REGISTER</Link></li>
                 <li className="dropdown">
                   <a data-toggle="dropdown" href="#"><i className="fa fa-cog" /> USER Shortlinks</a>
                   <ul className="dropdown-menu">
