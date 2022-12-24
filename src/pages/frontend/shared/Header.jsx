@@ -31,13 +31,7 @@ const Header = () => {
                     <li><a href="#">Logout</a></li>
                   </ul>
                 </li>
-                <li className="dropdown language">
-                  <a data-toggle="dropdown" href="#"><img src="/images/en.jpg" alt="" />ENGLISH</a>
-                  <ul className="dropdown-menu">
-                    <li><a className="current" href="#">ENGLISH</a></li>
-                    <li><a href="#">FRENCH<img src="/images/fr.jpg" alt="" /></a></li>
-                  </ul>
-                </li>
+                <li><Link to='/admin'><i className="fa fa-lock" /> ADMIN</Link></li>
               </ul>
             </div>
           </div>

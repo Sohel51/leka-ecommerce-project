@@ -1,0 +1,18 @@
+#backendWrap .ec-sidebar-fixed-offcanvas .ec-main-header,
+#backendWrap .ec-sidebar-fixed .ec-main-header {
+  padding-left: 250px;
+}
+#backendWrap .ec-sidebar-fixed-offcanvas .ec-page-wrapper,
+#backendWrap .ec-sidebar-fixed .ec-page-wrapper {
+  padding-left: 24.6rem;
+}
+#backendWrap .footer {
+  background-color: white;
+  padding-top: 80px;
+}
+#backendWrap .sidebar li > a .caret {
+  font-size: 2.25rem;
+}
+#backendWrap .navbar-right {
+  margin-right: 0px;
+}

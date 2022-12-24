@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ForgetPass from "./pages/auth/ForgetPass";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import Admin from "./pages/backend/Admin";
 import About from "./pages/frontend/About";
 import Cart from "./pages/frontend/Cart";
 import CheckOut from "./pages/frontend/CheckOut";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin></Admin>} />
       </Routes>
     </BrowserRouter>
   );
