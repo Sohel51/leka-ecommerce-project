@@ -6792,9 +6792,9 @@
 #backendWrap .mdi-google-lens::before {
   content: "\F9F5";
 }
-#backendWrap .mdi-google-maps::before {
+/* #backendWrap .mdi-google-maps::before {
   content: "\F5F5";
-}
+} */
 #backendWrap .mdi-google-my-business::before {
   content: "\F006A";
 }

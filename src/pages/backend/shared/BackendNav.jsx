@@ -9,8 +9,8 @@ const BackendNav = () => {
                 <div id="sidebar" className="sidebar ec-sidebar-footer">
                     <div className="ec-brand">
                         <Link to='/' title="Ekka">
-                            <img className="ec-brand-icon" src="assets/img/logo/ec-site-logo.png" alt="" />
-                            <span className="ec-brand-name text-truncate">Ekka</span>
+                            <img className="ec-brand-icon" src="" alt="" />
+                            <span className="ec-brand-name text-truncate">Leka</span>
                         </Link>
                     </div>
                     {/* begin sidebar scrollbar */}

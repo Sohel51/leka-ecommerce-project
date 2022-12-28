@@ -2,6 +2,35 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
+    const registrationHandler = (e) =>{
+        e.preventDefault();
+
+                // sending single data value
+        // let info = {
+        //     name: e.target.username.value,
+        //     email: e.target.email.value,
+        //     password: e.target.password.value,
+        // }
+        // console.log(info);
+
+                // sending full form data
+        let formData = new FormData(e.target);
+        formData.append('full-form', 'recieve the new full form-data');
+
+        fetch('http://localhost:5000/user/register',{
+            method: "POST",
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(info)
+            body: formData
+        })
+        .then(res => res.json())
+        .then( res=> {
+            console.log(res);
+        })
+    }
+
     return (
         <div className="form-body without-side">
             <div className="website-logo">
@@ -23,8 +52,8 @@ const Register = () => {
                         <div className="form-items">
                             <h3>Register new account</h3>
                             <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                            <form>
-                                <input className="form-control" type="text" name="name" placeholder="Full Name" required />
+                            <form onSubmit={(e)=>registrationHandler(e)}>
+                                <input className="form-control" type="text" name="username" placeholder="Full Name" required />
                                 <input className="form-control" type="email" name="email" placeholder="E-mail Address" required />
                                 <input className="form-control" type="password" name="password" placeholder="Password" required />
                                 <div className="form-button">
