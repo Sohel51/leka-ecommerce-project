@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
-
+    const [formErrrors, setformErrrors] = useState()
     //creating a new user
     function registrationHandler(e) {
         e.preventDefault();
@@ -16,6 +16,7 @@ const Register = () => {
 
         // sending full form data
         let formData = new FormData(e.target);
+        setformErrrors({}); // remove the previous details
         formData.append('full-form', 'recieve the new full form-data');
 
         fetch('http://localhost:5000/user/register', {
@@ -24,40 +25,39 @@ const Register = () => {
             // body: JSON.stringify(info)
             body: formData
         })
-            .then(res => res.json())
+            .then(async (res) => {
+                let data = await res.json();
+                return {
+                    status: res.status,
+                    data,
+                }
+            })
             .then(res => {
                 console.log(res);
+                if (res.status === 422) {
+                    let tempError = {
+                        username: [],
+                        email: [],
+                        password: [],
+                    };
+                    setformErrrors({});
+                    res.data.errors.forEach((e, index) => {
+                        tempError[e.param].push(
+                            <li key={index} className='text-danger'>
+                                {e.msg}
+                            </li>
+                        )
+                    });
+                    setformErrrors(tempError)
+                }
+
+                // reset the form
+                if (res.status === 201) {
+                    e.target.reset();
+                }
             })
     }
 
-    //get the all user data
-    function getUser() {
-        fetch('http://localhost:5000/user/all')
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-            })
-    }
-
-    //find an user by email
-    function getUserByEmail() {
-        let email = 'user2@gmail.com' //static email
-        fetch('http://localhost:5000/user/get/' + email) //link where from we want to delete the data
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-            })
-    }
-
-    //delete user by email
-    function deleteUserByEmail() {
-        let email = 'demo@gmail.com'
-        fetch('http://localhost:5000/user/delete/' + email)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-            })
-    }
 
     return (
         <div className="form-body without-side">
@@ -81,9 +81,18 @@ const Register = () => {
                             <h3>Register new account</h3>
                             <p>Access to the most powerfull tool in the entire design and web industry.</p>
                             <form onSubmit={(e) => registrationHandler(e)}>
-                                <input className="form-control" type="text" name="username" placeholder="Full Name" required />
-                                <input className="form-control" type="email" name="email" placeholder="E-mail Address" required />
-                                <input className="form-control" type="password" name="password" placeholder="Password" required />
+                                <input className="form-control mb-1" type="text" name="username" placeholder="Full Name" />
+                                <ul className='mb-2'>
+                                    {formErrrors?.username}
+                                </ul>
+                                <input className="form-control mb-1" type="email" name="email" placeholder="E-mail Address" />
+                                <ul className='mb-2'>
+                                    {formErrrors?.email}
+                                </ul>
+                                <input className="form-control mb-1" type="password" name="password" placeholder="Password" />
+                                <ul className='mb-2'>
+                                    {formErrrors?.password}
+                                </ul>
                                 <div className="form-button">
                                     <button id="submit" type="submit" className="ibtn">Register</button>
                                 </div>
@@ -94,15 +103,6 @@ const Register = () => {
                             </div>
                             <div className="page-links">
                                 <Link to='/login'>Login to account</Link>
-                            </div>
-                            <div className="form-button">
-                                <button onClick={getUser} id="submit" type="submit" className="ibtn">All Users</button>
-                            </div>
-                            <div className="form-button">
-                                <button onClick={getUserByEmail} id="submit" type="submit" className="ibtn">Find User</button>
-                            </div>
-                            <div className="form-button">
-                                <button onClick={deleteUserByEmail} id="submit" type="submit" className="ibtn">Delete User</button>
                             </div>
                         </div>
                     </div>

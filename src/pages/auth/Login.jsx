@@ -2,6 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+    function loginHandler(e) {
+        e.preventDefault();
+
+        fetch('http://localhost:5000/user/login', {
+            method: "POST",
+            body: new FormData(e.target),
+        })
+        .then(res => res.json())
+        .then(res =>{
+            console.log(res);
+        })
+    }
+
     return (
         <div className="form-body without-side">
             <div className="website-logo">
@@ -23,11 +36,12 @@ const Login = () => {
                         <div className="form-items">
                             <h3>Login to account</h3>
                             <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                            <form>
-                                <input className="form-control" type="text" name="username" placeholder="E-mail Address" required />
-                                <input className="form-control" type="password" name="password" placeholder="Password" required />
+                            <form onSubmit={loginHandler}>
+                                <input className="form-control" type="text" name="username" placeholder="E-mail Address" />
+                                <input className="form-control" type="password" name="password" placeholder="Password" />
                                 <div className="form-button">
-                                    <button id="submit" type="submit" className="ibtn">Login</button> <Link to='/forgetpass'>Forget password?</Link>
+                                    <button id="submit" type="submit" className="ibtn">Login</button> 
+                                    <Link to='/forgetpass'>Forget password?</Link>
                                 </div>
                             </form>
                             <div className="other-links">

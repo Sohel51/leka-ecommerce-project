@@ -29,6 +29,10 @@
 /*-----------------
 1. COMMON STYLES
 ------------------*/
+*{
+    list-style: none;
+}
+
 .position-relative{
     position: relative;
 }

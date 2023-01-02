@@ -1,0 +1,28 @@
+    // //get the all user data
+    // function getUser() {
+    //     fetch('http://localhost:5000/user/all')
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    // }
+
+    // //find an user by email
+    // function getUserByEmail() {
+    //     let email = 'user2@gmail.com' //static email
+    //     fetch('http://localhost:5000/user/get/' + email) //link where from we want to delete the data
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    // }
+
+    // //delete user by email
+    // function deleteUserByEmail() {
+    //     let email = 'demo@gmail.com'
+    //     fetch('http://localhost:5000/user/delete/' + email)
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    // }

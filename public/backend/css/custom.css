@@ -16,3 +16,18 @@
 #backendWrap .navbar-right {
   margin-right: 0px;
 }
+.mb-1 {
+  margin-bottom: 10px !important;
+}
+.mb-2 {
+  margin-bottom: 20px !important;
+}
+.mb-3 {
+  margin-bottom: 30px !important;
+}
+.mb-4 {
+  margin-bottom: 40px !important;
+}
+.mb-5 {
+  margin-bottom: 50px !important;
+}
