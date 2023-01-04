@@ -1,13 +1,19 @@
 import React from 'react'
+import { useContext } from 'react';
 import { Link } from 'react-router-dom'
-import useAuth from '../../../hooks/useAuth'
+import { AuthContext } from '../../../context/AuthContext';
 
 const Header = () => {
-  const {
-    authStatus,
-    logout,
-    login,
-  } = useAuth();
+  const { checkAuth, logout } = useContext(AuthContext);
+  async function tokentCheck() {
+    let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
+      headers: {
+        Authorization: 'Bearer '+checkAuth?.token
+      }
+    });
+    let res = await req.json();
+    console.log(res);
+  }
 
   return (
     <div>
@@ -21,7 +27,16 @@ const Header = () => {
             </div>
             <div className="top-header-right">
               <ul>
-                <li><Link to='/login'><i className="fa fa-key" /> LOGIN</Link></li>
+                {
+                  !checkAuth.isAuth ?
+                    <li><Link to='/login'><i className="fa fa-key" /> LOGIN</Link></li>
+                    :
+                    <li>
+                      <a href="#/" onClick={logout}>
+                        <i className="fa fa-key"></i>Logout
+                      </a>
+                    </li>
+                }
                 <li><Link to='/register'><i className="fa fa-user" /> REGISTER</Link></li>
                 <li className="dropdown">
                   <a data-toggle="dropdown" href="#"><i className="fa fa-cog" /> USER Shortlinks</a>
@@ -60,6 +75,7 @@ const Header = () => {
                     <li><Link to='/checkout'>Check Out</Link></li>
                     <li><Link to='/cart'>Cart</Link></li>
                     <li><Link to='/contact'>Contact Us</Link></li>
+                    <li><a onClick={tokentCheck} href='#/'>Test Token</a></li>
                   </ul>
                 </nav>
               </div>
