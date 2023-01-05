@@ -10,9 +10,19 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(checkAuth);
-        if (checkAuth.isAuth) {
+        let pathName = window?.authPrevLink?.pathname;
+        delete window?.authPrevLink;
+        if(checkAuth.isAuth && pathName){
+            navigate(pathName);
+        }
+        else if(checkAuth.isAuth && checkAuth.data.role === 'customer') {
+            navigate('/profile');
+        }
+        else if(checkAuth.isAuth && checkAuth.data.role === 'admin') {
             navigate('/admin');
+        }
+        else {
+
         }
     }, [checkAuth])
 
@@ -55,6 +65,11 @@ const Login = () => {
                     setcheckAuth({
                         isAuth: true,
                         token: res.data.token,
+                        data: {
+                            email: res.data.email,
+                            username: res.data.username,
+                            role: res.data.role,
+                        }
                     })
                 }
             })

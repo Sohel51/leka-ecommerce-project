@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext';
 
 const Register = () => {
     const [formErrrors, setformErrrors] = useState()
+    const { checkAuth, setcheckAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (checkAuth.isAuth) {
+            navigate('/');
+        }
+    }, [checkAuth])
+
     //creating a new user
     function registrationHandler(e) {
         e.preventDefault();
-        // sending single data value
-        // let info = {
-        //     name: e.target.username.value,
-        //     email: e.target.email.value,
-        //     password: e.target.password.value,
-        // }
-        // console.log(info);
-
-        // sending full form data
         let formData = new FormData(e.target);
         setformErrrors({}); // remove the previous details
         formData.append('full-form', 'recieve the new full form-data');
@@ -54,6 +55,16 @@ const Register = () => {
                 // reset the form
                 if (res.status === 201) {
                     e.target.reset();
+                    window.localStorage.setItem('token', res.data.token)
+                    setcheckAuth({
+                        isAuth: true,
+                        token: res.data.token,
+                        data: {
+                            email: res.data.email,
+                            username: res.data.username,
+                            role: res.data.role,
+                        }
+                    })
                 }
             })
     }

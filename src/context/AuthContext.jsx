@@ -16,14 +16,31 @@ const AuthContextProvider = ({ children }) => {
         setData({ ...data })
     };
 
-    useEffect(() => {
-        let check = window.localStorage.getItem('token');
-        if (check) {
+    async function check_user(params) {
+        let req = await fetch('http://localhost:5000/user/check-user', {
+            headers: {
+                Authorization: 'Bearer ' + window.localStorage.getItem('token')
+            }
+        });
+        let res = await req.json();
+        let status = await req.status;
+        if (status === 200) {
             setcheckAuth({
                 isAuth: true,
-                token: check,
+                token: window.localStorage.getItem('token'),
+                data: {
+                    email: res.email,
+                    username: res.username,
+                    role: res.role,
+                }
             })
+        }else{
+            setcheckAuth(false)
         }
+    }
+
+    useEffect(() => {
+        check_user(true);
     }, [])
 
     const logout = () => {

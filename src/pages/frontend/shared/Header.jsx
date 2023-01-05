@@ -8,7 +8,7 @@ const Header = () => {
   async function tokentCheck() {
     let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
       headers: {
-        Authorization: 'Bearer '+checkAuth?.token
+        Authorization: 'Bearer '+ window.localStorage.getItem('token')
       }
     });
     let res = await req.json();
@@ -38,15 +38,8 @@ const Header = () => {
                     </li>
                 }
                 <li><Link to='/register'><i className="fa fa-user" /> REGISTER</Link></li>
-                <li className="dropdown">
-                  <a data-toggle="dropdown" href="#"><i className="fa fa-cog" /> USER Shortlinks</a>
-                  <ul className="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Order History</a></li>
-                    <li><a href="#">Logout</a></li>
-                  </ul>
-                </li>
-                <li><Link to='/admin'><i className="fa fa-lock" /> ADMIN</Link></li>
+                <li><Link to='/profile'><i className="fa fa-lock" />User PROFILE</Link></li>
+                <li><Link to='/admin'><i className="fa fa-cog" /> ADMIN</Link></li>
               </ul>
             </div>
           </div>

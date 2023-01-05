@@ -10,6 +10,9 @@ import CheckOut from "./pages/frontend/CheckOut";
 import Contact from "./pages/frontend/Contact";
 import Home from "./pages/frontend/Home";
 import Products from "./pages/frontend/Products";
+import Profile from "./pages/frontend/Profile";
+import AuthAdminRoute from "./routes/AuthAdminRoute";
+import AuthCustomerRoute from "./routes/AuthCustomerRoute";
 
 function App() {
   return (
@@ -25,7 +28,14 @@ function App() {
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<Admin></Admin>} />
+          <Route path="/profile" element={
+            <AuthCustomerRoute>
+              <Profile></Profile>
+            </AuthCustomerRoute>} />
+          <Route path="/admin" element={
+            <AuthAdminRoute>
+              <Admin></Admin>
+            </AuthAdminRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthContextProvider>
