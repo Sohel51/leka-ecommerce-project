@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../../context/AuthContext';
 
 const BackendNav = () => {
+    const { logout } = useContext(AuthContext);
+    async function tokentCheck() {
+        let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
+            headers: {
+                Authorization: 'Bearer ' + window.localStorage.getItem('token')
+            }
+        });
+        let res = await req.json();
+        console.log(res);
+    }
+
     return (
         <div>
             {/* LEFT MAIN SIDEBAR */}
@@ -82,7 +94,7 @@ const BackendNav = () => {
                                     </ul>
                                 </div>
                                 <hr />
-                            </li>                       
+                            </li>
                             {/* Order Management */}
                             <li className="has-sub">
                                 <a className="sidenav-item-link" href="javascript:void(0)">
@@ -121,6 +133,12 @@ const BackendNav = () => {
                                     <span className="nav-text">Front End</span>
                                 </a>
                                 <hr />
+                            </li>
+                            <li>
+                                <a className="sidenav-item-link" href="#/" onClick={logout}>
+                                    <i className="mdi mdi-tag-faces" />
+                                    <span className="nav-text">Log Out</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
