@@ -1,18 +1,9 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext';
 
 const BackendNav = () => {
     const { logout } = useContext(AuthContext);
-    async function tokentCheck() {
-        let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
-            headers: {
-                Authorization: 'Bearer ' + window.localStorage.getItem('token')
-            }
-        });
-        let res = await req.json();
-        console.log(res);
-    }
 
     return (
         <div>
@@ -26,70 +17,76 @@ const BackendNav = () => {
                         </Link>
                     </div>
                     {/* begin sidebar scrollbar */}
-                    <div className="ec-navigation" data-simplebar>
+                    <div className="ec-navigation overflow-style" data-simplebar>
                         {/* sidebar menu */}
                         <ul className="nav sidebar-inner" id="sidebar-menu">
                             {/* Dashboard */}
                             <li className="active">
-                                <a className="sidenav-item-link" href="index.html">
+                                <Link className="sidenav-item-link" to="/admin">
                                     <i className="mdi mdi-view-dashboard-outline" />
                                     <span className="nav-text">Dashboard</span>
-                                </a>
+                                </Link>
                                 <hr />
                             </li>
                             {/* Products */}
                             <li className="has-sub">
-                                <a className="sidenav-item-link" href="javascript:void(0)">
+                                <a className="sidenav-item-link" onClick={() => document.getElementById('tr1').classList.toggle('d-block')} to="#">
                                     <i className="mdi mdi-palette-advanced" />
                                     <span className="nav-text">Products</span> <b className="caret" />
                                 </a>
-                                <div className="collapse">
-                                    <ul className="sub-menu" id="products" data-parent="#sidebar-menu">
+                                <div className="collapse" id="tr1">
+                                    <ul className="sub-menu" id="vendors" data-parent="#sidebar-menu">
                                         <li className>
-                                            <a className="sidenav-item-link" href="product-add.html">
+                                            <Link className="sidenav-item-link" to="allcategory">
+                                                <span className="nav-text">All Category</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="addproduct">
                                                 <span className="nav-text">Add Product</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="product-list.html">
+                                            <Link className="sidenav-item-link" to="listproduct">
                                                 <span className="nav-text">List Product</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="product-grid.html">
+                                            <Link className="sidenav-item-link" to="gridproduct">
                                                 <span className="nav-text">Grid Product</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="product-detail.html">
+                                            <Link className="sidenav-item-link" to="productdetail">
                                                 <span className="nav-text">Product Detail</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             {/* User Management */}
                             <li className="has-sub">
-                                <a className="sidenav-item-link" href="javascript:void(0)">
+                                <a className="sidenav-item-link" onClick={() => document.getElementById('tr2').classList.toggle('d-block')} to="#">
                                     <i className="mdi mdi-account-group" />
                                     <span className="nav-text">Users</span> <b className="caret" />
                                 </a>
-                                <div className="collapse">
+                                <div className="collapse" id="tr2">
                                     <ul className="sub-menu" id="users" data-parent="#sidebar-menu">
                                         <li>
-                                            <a className="sidenav-item-link" href="user-card.html">
+                                            <Link className="sidenav-item-link" to="usergrid">
                                                 <span className="nav-text">User Grid</span>
-                                            </a>
+                                            </Link>
                                         </li>
+
                                         <li className>
-                                            <a className="sidenav-item-link" href="user-list.html">
+                                            <Link className="sidenav-item-link" to="userlist">
                                                 <span className="nav-text">User List</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="user-profile.html">
+                                            <Link className="sidenav-item-link" to="userprofile">
                                                 <span className="nav-text">Users Profile</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -97,45 +94,109 @@ const BackendNav = () => {
                             </li>
                             {/* Order Management */}
                             <li className="has-sub">
-                                <a className="sidenav-item-link" href="javascript:void(0)">
+                                <a className="sidenav-item-link" onClick={() => document.getElementById('tr3').classList.toggle('d-block')} to="#">
                                     <i className="mdi mdi-cart" />
                                     <span className="nav-text">Orders</span> <b className="caret" />
                                 </a>
-                                <div className="collapse">
+                                <div className="collapse" id="tr3">
                                     <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
                                         <li className>
-                                            <a className="sidenav-item-link" href="new-order.html">
+                                            <Link className="sidenav-item-link" to="neworder">
                                                 <span className="nav-text">New Order</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="order-history.html">
+                                            <Link className="sidenav-item-link" to="orderhistory">
                                                 <span className="nav-text">Order History</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="order-detail.html">
+                                            <Link className="sidenav-item-link" to="orderdetails">
                                                 <span className="nav-text">Order Detail</span>
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className>
-                                            <a className="sidenav-item-link" href="invoice.html">
+                                            <Link className="sidenav-item-link" to="invoice">
                                                 <span className="nav-text">Invoice</span>
-                                            </a>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {/* Blog Management */}
+                            <li className="has-sub">
+                                <a className="sidenav-item-link" onClick={() => document.getElementById('tr4').classList.toggle('d-block')} to="#">
+                                    <i className="mdi mdi-cart" />
+                                    <span className="nav-text">Blogs</span> <b className="caret" />
+                                </a>
+                                <div className="collapse" id="tr4">
+                                    <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="allblog">
+                                                <span className="nav-text">All Blogs</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="blogcategory">
+                                                <span className="nav-text">Blog Catagory</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="comment">
+                                                <span className="nav-text">Comments</span>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             {/* Frontend Management */}
-                            <li>
-                                <a className="sidenav-item-link" href="brand-list.html">
-                                    <i className="mdi mdi-tag-faces" />
-                                    <span className="nav-text">Front End</span>
+                            <li className="has-sub">
+                                <a className="sidenav-item-link" onClick={() => document.getElementById('tr5').classList.toggle('d-block')} to="#">
+                                    <i className="mdi mdi-cart" />
+                                    <span className="nav-text">Frontend</span> <b className="caret" />
                                 </a>
-                                <hr />
+                                <div className="collapse" id="tr5">
+                                    <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="basicinfo">
+                                                <span className="nav-text">Basic info</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="banner">
+                                                <span className="nav-text">Banner</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="brand">
+                                                <span className="nav-text">Brand</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="advertise">
+                                                <span className="nav-text">Advertise</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="discount">
+                                                <span className="nav-text">Discount</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="features">
+                                                <span className="nav-text">Features</span>
+                                            </Link>
+                                        </li>
+                                        <li className>
+                                            <Link className="sidenav-item-link" to="review">
+                                                <span className="nav-text">Review</span>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                             <li>
-                                <a className="sidenav-item-link" href="#/" onClick={logout}>
+                                <a className="sidenav-item-link logout-cursor" to="#/" onClick={logout}>
                                     <i className="mdi mdi-tag-faces" />
                                     <span className="nav-text">Log Out</span>
                                 </a>
@@ -144,6 +205,9 @@ const BackendNav = () => {
                     </div>
                 </div>
             </div>
+            <header className='p-6'>
+                <Outlet></Outlet>
+            </header>
         </div>
     )
 }

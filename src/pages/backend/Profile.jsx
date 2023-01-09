@@ -5,18 +5,9 @@ import Header from '../frontend/shared/Header'
 
 const Profile = () => {
   const { logout } = useContext(AuthContext);
-  async function tokentCheck() {
-    let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
-      headers: {
-        Authorization: 'Bearer '+ window.localStorage.getItem('token')
-      }
-    });
-    let res = await req.json();
-    console.log(res);
-  }
 
   return (
-    <div className="">
+    <div className="container">
       <Header></Header>
       <div id="backendWrap">
         <div className="ec-header-fixed ec-sidebar-light ec-header-light" id="body">

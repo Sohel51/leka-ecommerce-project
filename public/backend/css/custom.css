@@ -16,6 +16,15 @@
 #backendWrap .navbar-right {
   margin-right: 0px;
 }
+#backendWrap .overflow-style {
+  overflow-y: auto;
+}
+#backendWrap .logout-cursor {
+  cursor: pointer;
+}
+#backendWrap .sidebar .sidenav-item-link .nav-text {
+  cursor: pointer;
+}
 .mb-1 {
   margin-bottom: 10px !important;
 }

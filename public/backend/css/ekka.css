@@ -22732,11 +22732,11 @@
 }
 
 #backendWrap .sidebar .sub-menu>li>a {
-  padding: 0.625rem 1.25rem 0.625rem 0.94rem;
+  padding: 0.625rem 1.25rem 0.625rem 1.94rem;
   display: block;
   text-decoration: none;
   position: relative;
-  font-size: 0.88rem;
+  font-size: 1.5rem;
 }
 
 #backendWrap .sidebar .sub-menu>li .sub-menu {

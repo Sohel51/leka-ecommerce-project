@@ -11,6 +11,9 @@ const AuthContextProvider = ({ children }) => {
 
     const [checkAuth, setcheckAuth] = useState(false)
 
+    const [tempTest, settempTest] = useState(false)
+
+
     function change_data(property, value) {
         data[property] = value;
         setData({ ...data })
@@ -33,14 +36,24 @@ const AuthContextProvider = ({ children }) => {
                     username: res.username,
                     role: res.role,
                 }
+
             })
         }else{
-            setcheckAuth(false)
+            setcheckAuth({
+                isAuth: false,
+                token: null,
+                data: {
+                    email:null,
+                    username: null,
+                    role: null,
+                }
+            })
         }
+        settempTest(true)
     }
 
     useEffect(() => {
-        check_user(true);
+        check_user();
     }, [])
 
     const logout = () => {
@@ -60,9 +73,12 @@ const AuthContextProvider = ({ children }) => {
     }
 
     return (
+        tempTest ?
         <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
+        :
+        <div>Loading</div>
     )
 }
 
