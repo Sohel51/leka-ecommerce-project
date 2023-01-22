@@ -7,6 +7,9 @@ const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const editorRef = useRef(null);
   const previewImage = useRef(null);
+  const discount_field = useRef(null);
+  const price_field = useRef(null);
+  const discountPrice_field = useRef(null);
 
   useEffect(() => {
     getCategory();
@@ -30,6 +33,7 @@ const AddProduct = () => {
     setFormErrors({}); // for remove the errors
     let formData = new FormData(e.target);
     formData.append('description', editorRef.current.getContent());
+
     fetch(`http://localhost:5000/product/create`, {
       method: "POST",
       headers: {
@@ -67,9 +71,30 @@ const AddProduct = () => {
         // reset the form
         if (res.status === 201) {
           e.target.reset();
+          previewImage.current.src = '';
           window.alert('New Product Created')
         }
       })
+  }
+
+  const discountHandler = () => {
+    let price = +price_field.current.value;
+    let discount = +discount_field.current.value;
+    if (discount > 100) {
+      discount_field.current.value = 100
+      discount = 100;
+    }
+    if (discount < 0) {
+      discount_field.current.value = 0
+    }
+    if (discount > 0) {
+      let discountPrice = price - ((price * discount) / 100);
+      discountPrice_field.current.value = discountPrice;
+      console.log(price, discount, discountPrice);
+    } else {
+      discountPrice_field.current.value = '';
+      discount_field.current.value = '';
+    }
   }
 
   return (
@@ -104,21 +129,21 @@ const AddProduct = () => {
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Price</label>
-            <input type="text" className='form-control' name='price' />
+            <input ref={price_field} type="text" className='form-control' name='price' />
             <ul>
               {formErrors?.price}
             </ul>
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount</label>
-            <input type="text" className='form-control' name='discount' />
+            <input max={100} onKeyUp={discountHandler} ref={discount_field} type="text" className='form-control' name='discount' />
             <ul>
               {formErrors?.discount}
             </ul>
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount Price</label>
-            <input type="text" className='form-control' name='discountPrice' />
+            <input readOnly ref={discountPrice_field} type="text" className='form-control' name='discountPrice' />
             <ul>
               {formErrors?.discountPrice}
             </ul>
@@ -132,10 +157,10 @@ const AddProduct = () => {
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Image</label>
-            <input onChange={(e) => previewImage.current.src=window.URL.createObjectURL(e.target.files[0])}
+            <input onChange={(e) => previewImage.current.src = window.URL.createObjectURL(e.target.files[0])}
               type="file"
               className='' name='image' />
-            <img src="" style={{width: 120, marginTop: 5,}} ref={previewImage} />
+            <img src="" style={{ width: 120, marginTop: 5, }} ref={previewImage} />
             <ul>
               {formErrors?.image}
             </ul>
