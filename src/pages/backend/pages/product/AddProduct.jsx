@@ -102,7 +102,7 @@ const AddProduct = () => {
       <div className="card-header m-0 align-items-center d-flex flex-wrap justify-content-between">
         <h3>Add Product</h3>
         <div>
-          <Link to="/admin/listproduct" className='btn btn-md-size btn-info'><i className='fas fa-minus'>Product List</i></Link>
+          <Link to="/admin/listproduct" className='btn btn-md-size btn-info'><i className='fas fa-arrow-left'>Product List</i></Link>
         </div>
       </div>
       <div className="card-body">
@@ -143,7 +143,7 @@ const AddProduct = () => {
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount Price</label>
-            <input readOnly ref={discountPrice_field} type="text" className='form-control' name='discountPrice' />
+            <input readOnly step=".00" ref={discountPrice_field} type="text" className='form-control' name='discountPrice' />
             <ul>
               {formErrors?.discountPrice}
             </ul>

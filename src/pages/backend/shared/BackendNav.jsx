@@ -48,17 +48,7 @@ const BackendNav = () => {
                                         </li>
                                         <li className>
                                             <Link className="sidenav-item-link" to="listproduct">
-                                                <span className="nav-text">List Product</span>
-                                            </Link>
-                                        </li>
-                                        <li className>
-                                            <Link className="sidenav-item-link" to="gridproduct">
-                                                <span className="nav-text">Grid Product</span>
-                                            </Link>
-                                        </li>
-                                        <li className>
-                                            <Link className="sidenav-item-link" to="productdetail">
-                                                <span className="nav-text">Product Detail</span>
+                                                <span className="nav-text">All Product</span>
                                             </Link>
                                         </li>
                                     </ul>

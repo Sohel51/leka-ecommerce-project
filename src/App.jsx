@@ -95,7 +95,7 @@ function App() {
             <Route path="addproduct" element={<AddProduct></AddProduct>}></Route>
             <Route path="gridproduct" element={<GridProduct></GridProduct>}></Route>
             <Route path="listproduct" element={<ListProduct></ListProduct>}></Route>
-            <Route path="productdetail" element={<ProductDetail></ProductDetail>}></Route>
+            <Route path="productdetail/:id" element={<ProductDetail></ProductDetail>}></Route>
 
             {/* Product Category */}
             <Route path="allcategory" element={<AllCategory></AllCategory>}></Route>

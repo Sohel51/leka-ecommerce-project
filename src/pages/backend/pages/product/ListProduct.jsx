@@ -53,7 +53,7 @@ const ListProduct = () => {
                   <tr key={index}>
                     <td>{i._id}</td>
                     <td>{i.title}</td>
-                    <td><img src={i.image} style={{ width: 100, }} alt="" /></td>
+                    <td><img src={'http://localhost:5000/'+i.image} style={{ width: 100, }} alt="" /></td>
                     <td>{i.title}</td>
                     <td>{i.category.title}</td>
                     <td>{i.price}</td>
@@ -61,7 +61,7 @@ const ListProduct = () => {
                     <td>{i.discoutnPrice}</td>
                     <td>
                       <div className='d-flex gap-2 flex-wrap justify-content-end' style={{ gap: '5px' }}>
-                        <a href="" className='btn btn-sm btn-info'>Details</a>
+                        <Link to={`/admin/productdetail/${i._id}`} className='btn btn-sm btn-info'>Details</Link>
                         <Link to="" className='btn btn-sm btn-warning'>Edit</Link>
                         <a href="" className='btn btn-sm btn-danger'>Delete</a>
                       </div>
