@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import parse from 'html-react-parser';
 import moment from 'moment';
+import httpRequest from '../../../../hooks/httpRequest';
 
 const ProductDetail = () => {
   const [data, setData] = useState(null)
@@ -14,16 +15,9 @@ const ProductDetail = () => {
   }, [])
 
   const getProduct = () => {
-    fetch(`http://localhost:5000/product/get/${param.id}`, {
-      method: "GET",
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token')
-      },
-    })
-      .then(res => res.json())
+    httpRequest(`/product/get/${param.id}`)
       .then(res => {
-        // console.log(res);
-        setData(res);
+        setData(res.data);
       })
   }
   return (

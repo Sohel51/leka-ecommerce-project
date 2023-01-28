@@ -25,6 +25,7 @@ import EditCategory from "./pages/backend/pages/product/category/EditCategory";
 import GridProduct from "./pages/backend/pages/product/GridProduct";
 import ListProduct from "./pages/backend/pages/product/ListProduct";
 import ProductDetail from "./pages/backend/pages/product/ProductDetail";
+import UpdateProduct from "./pages/backend/pages/product/UpdateProduct";
 import UserGrid from "./pages/backend/pages/user/UserGrid";
 import UserList from "./pages/backend/pages/user/UserList";
 import UserProfile from "./pages/backend/pages/user/UserProfile";
@@ -93,6 +94,7 @@ function App() {
 
             {/* Product */}
             <Route path="addproduct" element={<AddProduct></AddProduct>}></Route>
+            <Route path="updateproduct/:id/:title" element={<UpdateProduct></UpdateProduct>}></Route>
             <Route path="gridproduct" element={<GridProduct></GridProduct>}></Route>
             <Route path="listproduct" element={<ListProduct></ListProduct>}></Route>
             <Route path="productdetail/:id" element={<ProductDetail></ProductDetail>}></Route>

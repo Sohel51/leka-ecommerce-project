@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
 import httpRequest from '../../../../hooks/httpRequest';
 
-const AddProduct = () => {
+const UpdateProduct = () => {
+  const [data, setData] = useState(null)
   const [formErrors, setFormErrors] = useState();
   const [categories, setCategories] = useState([]);
   const editorRef = useRef(null);
@@ -11,9 +12,11 @@ const AddProduct = () => {
   const discount_field = useRef(null);
   const price_field = useRef(null);
   const discountPrice_field = useRef(null);
+  const param = useParams();
 
   useEffect(() => {
     getCategory();
+    getProduct();
   }, [])
 
   const getCategory = () => {
@@ -23,13 +26,20 @@ const AddProduct = () => {
       })
   }
 
+  const getProduct = () => {
+    httpRequest(`/product/get/${param.id}`)
+      .then(res => {
+        setData(res.data);
+      })
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
     setFormErrors({}); // for remove the errors
     let formData = new FormData(e.target);
     formData.append('description', editorRef.current.getContent());
 
-    httpRequest('/product/create', 'POST', formData)
+    httpRequest('/product/update', 'POST', formData)
       .then(res => {
         if (res.status === 422) {
           let tempError = {
@@ -81,7 +91,7 @@ const AddProduct = () => {
   return (
     <div className="d-card">
       <div className="card-header m-0 align-items-center d-flex flex-wrap justify-content-between">
-        <h3>Add Product</h3>
+        <h3>Update Product</h3>
         <div>
           <Link to="/admin/listproduct" className='btn btn-md-size btn-info'><i className='fas fa-arrow-left'>Product List</i></Link>
         </div>
@@ -90,7 +100,7 @@ const AddProduct = () => {
         <form action="" encType='multipart/form-data' onSubmit={submitHandler}>
           <div className="from-group mb-3">
             <label htmlFor="">Title</label>
-            <input type="text" className='form-control' name='title' />
+            <input defaultValue={data.title} type="text" className='form-control' name='title' />
             <ul>
               {formErrors?.title}
             </ul>
@@ -110,28 +120,28 @@ const AddProduct = () => {
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Price</label>
-            <input ref={price_field} type="text" className='form-control' name='price' />
+            <input defaultValue={data.price} ref={price_field} type="text" className='form-control' name='price' />
             <ul>
               {formErrors?.price}
             </ul>
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount</label>
-            <input max={100} onKeyUp={discountHandler} ref={discount_field} type="text" className='form-control' name='discount' />
+            <input defaultValue={data.discount} max={100} onKeyUp={discountHandler} ref={discount_field} type="text" className='form-control' name='discount' />
             <ul>
               {formErrors?.discount}
             </ul>
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount Price</label>
-            <input readOnly step=".00" ref={discountPrice_field} type="text" className='form-control' name='discountPrice' />
+            <input defaultValue={data.discountPrice} readOnly step=".00" ref={discountPrice_field} type="text" className='form-control' name='discountPrice' />
             <ul>
               {formErrors?.discountPrice}
             </ul>
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount Date</label>
-            <input type="date" className='form-control' name='discountDate' />
+            <input defaultValue={data.discountDate} type="date" className='form-control' name='discountDate' />
             <ul>
               {formErrors?.discountDate}
             </ul>
@@ -150,7 +160,7 @@ const AddProduct = () => {
             <label htmlFor="">Description</label>
             <Editor
               onInit={(evt, editor) => editorRef.current = editor}
-              initialValue="<p>This is the initial content of the editor.</p>"
+              initialValue={data.description}
               init={{
                 height: 500,
                 menubar: false,
@@ -178,4 +188,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default UpdateProduct

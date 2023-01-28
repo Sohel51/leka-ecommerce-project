@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import httpRequest from '../../../../hooks/httpRequest'
 
 const ListProduct = () => {
   const [data, setData] = useState([])
@@ -11,15 +12,9 @@ const ListProduct = () => {
   }, [])
 
   const getProducts = () => {
-    fetch(`http://localhost:5000/product/all`, {
-      method: "GET",
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token')
-      },
-    })
-      .then(res => res.json())
+    httpRequest('/product/all')
       .then(res => {
-        setData(res);
+        setData(res.data);
       })
   }
 
@@ -62,7 +57,7 @@ const ListProduct = () => {
                     <td>
                       <div className='d-flex gap-2 flex-wrap justify-content-end' style={{ gap: '5px' }}>
                         <Link to={`/admin/productdetail/${i._id}`} className='btn btn-sm btn-info'>Details</Link>
-                        <Link to="" className='btn btn-sm btn-warning'>Edit</Link>
+                        <Link to={`/admin/updateproduct/${i._id}/${i.title}`} className='btn btn-sm btn-warning'>Edit</Link>
                         <a href="" className='btn btn-sm btn-danger'>Delete</a>
                       </div>
                     </td>

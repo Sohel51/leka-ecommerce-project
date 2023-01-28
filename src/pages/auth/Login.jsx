@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
+import httpRequest from '../../hooks/httpRequest'
 
 const Login = () => {
     const [formErrrors, setformErrrors] = useState()
@@ -12,13 +13,13 @@ const Login = () => {
     useEffect(() => {
         let pathName = window?.authPrevLink?.pathname;
         delete window?.authPrevLink;
-        if(checkAuth.isAuth && pathName){
+        if (checkAuth.isAuth && pathName) {
             navigate(pathName);
         }
-        else if(checkAuth.isAuth && checkAuth.data.role === 'customer') {
+        else if (checkAuth.isAuth && checkAuth.data.role === 'customer') {
             navigate('/profile');
         }
-        else if(checkAuth.isAuth && checkAuth.data.role === 'admin') {
+        else if (checkAuth.isAuth && checkAuth.data.role === 'admin') {
             navigate('/admin');
         }
         else {
@@ -31,19 +32,8 @@ const Login = () => {
         e.preventDefault();
         setformErrrors({});
 
-        fetch('http://localhost:5000/user/login', {
-            method: 'POST',
-            body: new FormData(e.target),
-        })
-            .then(async (res) => {
-                let data = await res.json();
-                return {
-                    status: res.status,
-                    data,
-                }
-            })
+        httpRequest('/user/login', 'POST', new FormData(e.target))
             .then(res => {
-                console.log(res);
                 if (res.status === 422) {
                     let tempError = {
                         username: [],

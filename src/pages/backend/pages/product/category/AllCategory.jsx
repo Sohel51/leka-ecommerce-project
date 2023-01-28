@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import httpRequest from '../../../../../hooks/httpRequest';
 
 const AllCategory = () => {
     const [data, setData] = useState([]);
@@ -11,16 +12,9 @@ const AllCategory = () => {
     }, [])
 
     const getCategory = () => {
-        fetch('http://localhost:5000/category/all', {
-            method: "GET",
-            headers: {
-                Authorization: 'Bearer ' + window.localStorage.getItem('token')
-            },
-        })
-            .then(res => res.json())
+        httpRequest('/category/all')
             .then(res => {
-                console.log(res);
-                setData(res);
+                setData(res.data);
             })
     }
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext';
+import httpRequest from '../../hooks/httpRequest';
 
 const Register = () => {
     const [formErrrors, setformErrrors] = useState()
@@ -20,21 +21,8 @@ const Register = () => {
         setformErrrors({}); // remove the previous details
         formData.append('full-form', 'recieve the new full form-data');
 
-        fetch('http://localhost:5000/user/register', {
-            method: "POST",
-            // headers: {'Content-Type': 'application/json' },
-            // body: JSON.stringify(info)
-            body: formData
-        })
-            .then(async (res) => {
-                let data = await res.json();
-                return {
-                    status: res.status,
-                    data,
-                }
-            })
+        httpRequest('/user/register', 'POST', new FormData(e.target))
             .then(res => {
-                console.log(res);
                 if (res.status === 422) {
                     let tempError = {
                         username: [],
