@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import parse from 'html-react-parser';
 import moment from 'moment';
 import httpRequest from '../../../../hooks/httpRequest';
+import resourceLink from '../../../../hooks/resourceLink';
 
 const ProductDetail = () => {
   const [data, setData] = useState(null)
@@ -34,7 +35,7 @@ const ProductDetail = () => {
             <div className="row">
               <div className="col-lg-6">
                 <div>
-                  <img className='img-fluid' src={'http://localhost:5000/' + data.image} alt="" />
+                  <img className='img-fluid' src={resourceLink(data.image)} alt="" />
                 </div>
               </div>
               <div className="col-lg-6">

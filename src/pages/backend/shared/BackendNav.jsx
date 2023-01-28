@@ -36,17 +36,17 @@ const BackendNav = () => {
                                 </a>
                                 <div className="collapse" id="tr1">
                                     <ul className="sub-menu" id="vendors" data-parent="#sidebar-menu">
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="allcategory">
                                                 <span className="nav-text">All Category</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="addproduct">
                                                 <span className="nav-text">Add Product</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="listproduct">
                                                 <span className="nav-text">All Product</span>
                                             </Link>
@@ -68,12 +68,12 @@ const BackendNav = () => {
                                             </Link>
                                         </li>
 
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="userlist">
                                                 <span className="nav-text">User List</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="userprofile">
                                                 <span className="nav-text">Users Profile</span>
                                             </Link>
@@ -90,22 +90,22 @@ const BackendNav = () => {
                                 </a>
                                 <div className="collapse" id="tr3">
                                     <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="neworder">
                                                 <span className="nav-text">New Order</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="orderhistory">
                                                 <span className="nav-text">Order History</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="orderdetails">
                                                 <span className="nav-text">Order Detail</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="invoice">
                                                 <span className="nav-text">Invoice</span>
                                             </Link>
@@ -121,17 +121,17 @@ const BackendNav = () => {
                                 </a>
                                 <div className="collapse" id="tr4">
                                     <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="allblog">
                                                 <span className="nav-text">All Blogs</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="blogcategory">
                                                 <span className="nav-text">Blog Catagory</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="comment">
                                                 <span className="nav-text">Comments</span>
                                             </Link>
@@ -147,37 +147,37 @@ const BackendNav = () => {
                                 </a>
                                 <div className="collapse" id="tr5">
                                     <ul className="sub-menu" id="orders" data-parent="#sidebar-menu">
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="basicinfo">
                                                 <span className="nav-text">Basic info</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="banner">
                                                 <span className="nav-text">Banner</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="brand">
                                                 <span className="nav-text">Brand</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="advertise">
                                                 <span className="nav-text">Advertise</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="discount">
                                                 <span className="nav-text">Discount</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="features">
                                                 <span className="nav-text">Features</span>
                                             </Link>
                                         </li>
-                                        <li className>
+                                        <li >
                                             <Link className="sidenav-item-link" to="review">
                                                 <span className="nav-text">Review</span>
                                             </Link>

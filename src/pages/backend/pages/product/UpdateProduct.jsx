@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import httpRequest from '../../../../hooks/httpRequest';
 
 const UpdateProduct = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({})
   const [formErrors, setFormErrors] = useState();
   const [categories, setCategories] = useState([]);
   const editorRef = useRef(null);
@@ -38,6 +38,7 @@ const UpdateProduct = () => {
     setFormErrors({}); // for remove the errors
     let formData = new FormData(e.target);
     formData.append('description', editorRef.current.getContent());
+    formData.append('_id', param.id);
 
     httpRequest('/product/update', 'POST', formData)
       .then(res => {
@@ -61,9 +62,8 @@ const UpdateProduct = () => {
 
         // reset the form
         if (res.status === 201) {
-          e.target.reset();
           previewImage.current.src = '';
-          window.alert('New Product Created')
+          window.alert('Update Completed')
         }
       })
   }
@@ -141,7 +141,7 @@ const UpdateProduct = () => {
           </div>
           <div className="from-group mb-3">
             <label htmlFor="">Discount Date</label>
-            <input defaultValue={data.discountDate} type="date" className='form-control' name='discountDate' />
+            <input defaultValue={data.discountDate?.split('T')[0]} type="date" className='form-control' name='discountDate' />
             <ul>
               {formErrors?.discountDate}
             </ul>
