@@ -118,7 +118,7 @@ const Home = () => {
                                             </div>
                                         </div>
                                         <div className="product-info">
-                                            <h3><a href="#">Ledtead Predae</a></h3>
+                                            <h3><a href="#">Ledtead Predaee</a></h3>
                                             <span className="product-price">$89.00</span>
                                             <a href="#" className="button-add-to-cart">ADD TO CART</a>
                                         </div>
@@ -138,7 +138,7 @@ const Home = () => {
                                         <div className="product-info">
                                             <h3><a href="#">Ledtead Predae</a></h3>
                                             <span className="product-price">$89.00</span>
-                                            <a href="#" className="button-add-to-cart">ADD TO CART</a>
+                                            <a href="#" className="button-add-to-cart">ADD TO CARTT</a>
                                         </div>
                                     </div>
                                     <div className="product">
