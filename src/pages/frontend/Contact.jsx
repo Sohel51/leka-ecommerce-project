@@ -15,7 +15,7 @@ const Contact = () => {
             <h2 className="page-title">CONTACT US</h2>
             <div className="breadcrumbs">
               <a href="#">Home</a>
-              <span>CONTACT US</span>
+              <span>Contact Us</span>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@ const Contact = () => {
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
                 <div className="block-info-contact">
                   <div className="social-network">
-                    <span>CONNECT WITH US</span>
+                    <span>Contact With Us</span>
                     <a href="#"><i className="fa fa-facebook" /></a>
                     <a href="#"><i className="fa fa-twitter" /></a>
                     <a href="#"><i className="fa fa-pinterest" /></a>

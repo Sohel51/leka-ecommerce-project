@@ -57,7 +57,7 @@ const Cart = () => {
             <thead>
               <tr>
                 <th className="product-thumbnail">Product</th>
-                <th className="product-name">name</th>
+                <th className="product-name">Name</th>
                 <th className="product-quantity">Quantity</th>
                 <th className="product-price">Price</th>
                 <th className="product-subtotal">Total price</th>
@@ -139,7 +139,7 @@ const Cart = () => {
               </tr>
               <tr>
                 <td colSpan={6} className="actions">
-                  <button className="button pull-left">CONTINUE SHOPPING</button>
+                  <button className="button pull-left">Continue Shopping</button>
                   <input type="submit" className="button" name="update_cart" defaultValue="UPDATE SHOPPING CART" />
                   <button className="button">CLEAR SHOPPING CART</button>
                 </td>
