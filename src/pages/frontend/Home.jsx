@@ -1,12 +1,8 @@
 import React from 'react'
-import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { AsyncContext } from '../../context/AsyncContext'
 import httpRequest from '../../hooks/httpRequest'
 import ProductItem from './components/ProductItem'
-import Footer from './shared/Footer'
-import Header from './shared/Header'
 
 const Home = () => {
     const [products, setProducts] = useState([])
@@ -18,23 +14,8 @@ const Home = () => {
             })
     }, [])
 
-    const { carts, dispatch } = useContext(AsyncContext);
-    console.log(carts);
     return (
         <div>
-            <button onClick={() => dispatch({ type: 'insert', payload: null })}>Add to Cart</button>
-            <ul>
-                {
-                    carts.map(item => {
-                        return <li>
-                            {item.productId} : {item.price}
-                        </li>
-                    })
-                }
-            </ul>
-
-            <Header></Header>
-
             {/* Slide */}
             <div className="section-slide position-relative">
                 <div className="slide-home" data-animatein="fadeIn" data-animateout="fadeOut" data-margin={0} data-nav="true" data-autoplay="true" data-loop="true" data-responsive="{&quot;0&quot;:{&quot;items&quot;:1,&quot;nav&quot;:false},&quot;600&quot;:{&quot;items&quot;:1},&quot;1000&quot;:{&quot;items&quot;:1}}">
@@ -662,9 +643,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/* Footer */}
-            <Footer></Footer>
-            {/* Footer */}
         </div>
     )
 }

@@ -5,9 +5,6 @@ import Header from './shared/Header'
 const About = () => {
   return (
     <div>
-      {/* Header */}
-      <Header></Header>
-      {/* ./Header */}
       <section className="banner banner-about position-relative">
         <div className="overlay" />
         <div className="container">
@@ -138,9 +135,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <Footer></Footer>
-      {/* Footer */}
     </div>
   )
 }

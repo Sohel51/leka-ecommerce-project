@@ -1,13 +1,8 @@
 import React from 'react'
-import Footer from './shared/Footer'
-import Header from './shared/Header'
 
 const Cart = () => {
   return (
     <div>
-      {/* Header */}
-      <Header></Header>
-      {/* ./Header */}
       <section className="banner banner-cart position-relative">
         <div className="overlay" />
         <div className="container">
@@ -272,9 +267,6 @@ const Cart = () => {
           {/*./Sell products*/}
         </div>
       </div>
-      {/* Footer */}
-      <Footer></Footer>
-      {/* Footer */}
     </div>
   )
 }

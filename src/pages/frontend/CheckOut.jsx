@@ -1,13 +1,8 @@
 import React from 'react'
-import Footer from './shared/Footer'
-import Header from './shared/Header'
 
 const CheckOut = () => {
   return (
     <div>
-      {/* Header */}
-      <Header></Header>
-      {/* ./Header */}
       <section className="banner banner-checkout banner-cart position-relative">
         <div className="overlay" />
         <div className="container">
@@ -198,9 +193,6 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <Footer></Footer>
-      {/* Footer */}
     </div>
   )
 }

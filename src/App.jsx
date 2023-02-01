@@ -42,6 +42,7 @@ import OrderList from "./pages/frontend/profilePages/OrderList";
 import Payment from "./pages/frontend/profilePages/Payment";
 import Settings from "./pages/frontend/profilePages/Settings";
 import WishList from "./pages/frontend/profilePages/WishList";
+import { FrontendLayout } from "./pages/layouts/FrontendLayout";
 import AuthAdminRoute from "./routes/AuthAdminRoute";
 import AuthCustomerRoute from "./routes/AuthCustomerRoute";
 
@@ -52,18 +53,19 @@ function App() {
         <Routes>
           <Route path="/" element={
             <AsyncContextProvider>
-              <Home />
-            </AsyncContextProvider>
-          } >
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="forgetpass" element={<ForgetPass />} />
-            <Route path="products" element={<Products />} />
-            <Route path="about" element={<About />} />
-            <Route path="checkout" element={<CheckOut />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="profile" element={
+              <FrontendLayout />
+            </AsyncContextProvider>}
+          >
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgetpass" element={<ForgetPass />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/profile" element={
               <AuthCustomerRoute>
                 <Profile></Profile>
               </AuthCustomerRoute>} >

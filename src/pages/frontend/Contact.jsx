@@ -1,13 +1,8 @@
 import React from 'react'
-import Footer from './shared/Footer'
-import Header from './shared/Header'
 
 const Contact = () => {
   return (
     <div>
-      {/* Header */}
-      <Header></Header>
-      {/* ./Header */}
       <section className="banner banner-contact position-relative">
         <div className="overlay" />
         <div className="container">
@@ -93,9 +88,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <Footer></Footer>
-      {/* Footer */}
     </div>
   )
 }
