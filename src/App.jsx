@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AsyncContextProvider from "./context/AsyncContext";
 import AuthContextProvider from "./context/AuthContext";
 import ForgetPass from "./pages/auth/ForgetPass";
 import Login from "./pages/auth/Login";
@@ -49,24 +50,29 @@ function App() {
     <AuthContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgetpass" element={<ForgetPass />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={
-            <AuthCustomerRoute>
-              <Profile></Profile>
-            </AuthCustomerRoute>} >
-            <Route path="cartlist" element={<CartList></CartList>}></Route>
-            <Route path="orderlist" element={<OrderList></OrderList>}></Route>
-            <Route path="payment" element={<Payment></Payment>}></Route>
-            <Route path="settings" element={<Settings></Settings>}></Route>
-            <Route path="wishlist" element={<WishList></WishList>}></Route>
+          <Route path="/" element={
+            <AsyncContextProvider>
+              <Home />
+            </AsyncContextProvider>
+          } >
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="forgetpass" element={<ForgetPass />} />
+            <Route path="products" element={<Products />} />
+            <Route path="about" element={<About />} />
+            <Route path="checkout" element={<CheckOut />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="profile" element={
+              <AuthCustomerRoute>
+                <Profile></Profile>
+              </AuthCustomerRoute>} >
+              <Route path="cartlist" element={<CartList></CartList>}></Route>
+              <Route path="orderlist" element={<OrderList></OrderList>}></Route>
+              <Route path="payment" element={<Payment></Payment>}></Route>
+              <Route path="settings" element={<Settings></Settings>}></Route>
+              <Route path="wishlist" element={<WishList></WishList>}></Route>
+            </Route>
           </Route>
           <Route path="/admin" element={
             <AuthAdminRoute>
@@ -86,7 +92,7 @@ function App() {
             <Route path="features" element={<Features></Features>}></Route>
             <Route path="review" element={<Review></Review>}></Route>
             <Route path="invoice" element={<Invoice></Invoice>}></Route>
-            
+
             {/* Order */}
             <Route path="neworder" element={<NewOrder></NewOrder>}></Route>
             <Route path="orderdetails" element={<OrderDetails></OrderDetails>}></Route>

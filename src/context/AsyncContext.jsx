@@ -1,16 +1,29 @@
 import React from 'react'
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { createContext } from 'react'
 
-export const AsyncContext = createContext(null);
+const reducers = (state, {type, payload}) =>{
+    switch (type) {
+        case 'insert':
+            let tempState = {...state};
+            tempState.push({
+                productId: state.length + 1,
+                price: Math.random(),
+            })
+            return tempState
+            break;
+    
+        default:
+            break;
+    }
+}
 
+export const AsyncContext = createContext(null);
 const AsyncContextProvider = ({children}) => {
-    const [name, setName] = useState({
-        first_name: null,
-        last_name: null,
-    })
+    const [carts, dispatch] = useReducer(reducers, [])
+
     return (
-        <AsyncContext.Provider value={{name, setName}}>
+        <AsyncContext.Provider value={{carts, dispatch}}>
             {children}
         </AsyncContext.Provider>
     )

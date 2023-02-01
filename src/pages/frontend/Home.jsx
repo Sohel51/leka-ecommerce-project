@@ -1,6 +1,8 @@
 import React from 'react'
+import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { AsyncContext } from '../../context/AsyncContext'
 import httpRequest from '../../hooks/httpRequest'
 import ProductItem from './components/ProductItem'
 import Footer from './shared/Footer'
@@ -16,8 +18,21 @@ const Home = () => {
             })
     }, [])
 
+    const { carts, dispatch } = useContext(AsyncContext);
+    console.log(carts);
     return (
         <div>
+            <button onClick={() => dispatch({ type: 'insert', payload: null })}>Add to Cart</button>
+            <ul>
+                {
+                    carts.map(item => {
+                        return <li>
+                            {item.productId} : {item.price}
+                        </li>
+                    })
+                }
+            </ul>
+
             <Header></Header>
 
             {/* Slide */}
@@ -59,7 +74,7 @@ const Home = () => {
                                     {
                                         products.map((product, index) => {
                                             return <div key={index} className="col-md-3">
-                                                 <ProductItem product={product}></ProductItem>
+                                                <ProductItem product={product}></ProductItem>
                                             </div>
                                         })
                                     }
