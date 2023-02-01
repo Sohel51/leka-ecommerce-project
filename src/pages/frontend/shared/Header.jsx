@@ -2,18 +2,23 @@ import React from 'react'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext';
+import resourceLink from '../../../hooks/resourceLink';
+import useFrontendContext from '../../../hooks/useFrontendContext';
 
 const Header = () => {
   const { checkAuth, logout } = useContext(AuthContext);
   async function tokentCheck() {
     let req = await fetch('http://localhost:5000/user/get/63b5015711a3b401ec1f9ab1', {
       headers: {
-        Authorization: 'Bearer '+ window.localStorage.getItem('token')
+        Authorization: 'Bearer ' + window.localStorage.getItem('token')
       }
     });
     let res = await req.json();
     console.log(res);
   }
+
+  const { state, dispatch } = useFrontendContext();
+  const { carts } = state;
 
   return (
     <div>
@@ -80,31 +85,26 @@ const Header = () => {
                 {/* ./Icon search */}
                 {/* Mini cart */}
                 <div className="mini-cart">
-                  <a className="icon" href="#">Cart <span className="count">2</span></a>
+                  <a className="icon" href="#">Cart <span className="count">{carts.length}</span></a>
                   <div className="mini-cart-content">
                     <ul className="list-cart-product">
-                      <li>
-                        <div className="product-thumb">
-                          <a href="#"><img src="/images/products/product-cart1.jpg" alt="" /></a>
-                        </div>
-                        <div className="product-info">
-                          <h5 className="product-name"><a href="#">Ledtead Predae</a></h5>
-                          <span className="price">$90.00</span>
-                          <span className="qty">Qty: 1 - Size: L</span>
-                          <a href="#" className="remove">remove</a>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="product-thumb">
-                          <a href="#"><img src="/images/products/product-cart2.jpg" alt="" /></a>
-                        </div>
-                        <div className="product-info">
-                          <h5 className="product-name"><a href="#">Ledtead Predae</a></h5>
-                          <span className="price">$90.00</span>
-                          <span className="qty">Qty: 1 - Size: M</span>
-                          <a href="#" className="remove">remove</a>
-                        </div>
-                      </li>
+                      {
+                        carts.map((product, index) => {
+                          return <li key={index}>
+                            <div className="product-thumb">
+                              <a href="#"><img src={resourceLink(product.image)} alt="" /></a>
+                            </div>
+                            <div className="product-info">
+                              <h5 className="product-name"><a href="#">{product.title}</a></h5>
+                              <span className="price">${product.price}</span>
+                              <span className="qty">Qty: 1 - Size: L</span>
+                              <a className="remove"
+                                onClick={() => dispatch({ fn: null, type: 'removeCart', payload: { index } })}
+                                href="#">remove</a>
+                            </div>
+                          </li>
+                        })
+                      }
                     </ul>
                     <p className="sub-toal-wapper">
                       <span>SUBTOTAL</span>

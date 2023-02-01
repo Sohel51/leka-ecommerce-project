@@ -2,16 +2,10 @@ import React from 'react'
 import { useReducer } from 'react';
 import { createContext } from 'react'
 
-const fakeApi = () => {
-    return new Promise((resolve, reject) => { 
-        setTimeout(() => {
-            resolve('Ok')
-        }, 2000);
-     })
-}
-
 const saveCart = (dispatch, type, payload) => {
-    fakeApi().then(res => {
+    fetch('http://localhost:3002/test')
+    .then(res => res.json())
+    .then(res => {
         console.log(res);
         dispatch({type, payload})
     })

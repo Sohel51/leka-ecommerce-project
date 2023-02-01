@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AsyncContextProvider from "./context/AsyncContext";
 import AuthContextProvider from "./context/AuthContext";
+import FrontendContextProvider from "./context/FrontendContext";
 import ForgetPass from "./pages/auth/ForgetPass";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -52,9 +52,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
-            <AsyncContextProvider>
+            <FrontendContextProvider>
               <FrontendLayout />
-            </AsyncContextProvider>}
+            </FrontendContextProvider>}
           >
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />

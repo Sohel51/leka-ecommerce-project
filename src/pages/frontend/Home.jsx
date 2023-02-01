@@ -55,7 +55,7 @@ const Home = () => {
                                     {
                                         products.map((product, index) => {
                                             return <div key={index} className="col-md-3">
-                                                <ProductItem product={product}></ProductItem>
+                                                <ProductItem index={index} product={product}></ProductItem>
                                             </div>
                                         })
                                     }
