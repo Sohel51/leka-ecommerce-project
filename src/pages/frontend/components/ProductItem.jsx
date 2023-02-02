@@ -19,7 +19,19 @@ const ProductItem = ({ product }) => {
                 </div>
                 <div className="product-info">
                     <h3><a href="#">{product.title}</a></h3>
-                    <span className="product-price">${product.price}</span>
+                    {
+                        product.discount ?
+                            <span className="product-price">
+                                <span className='product-price-custom-discount'>${product.price}</span>
+                                <span className='product-discountprice-custom'>&nbsp; %{product.discount} </span>
+                                &nbsp;${product.discountPrice}
+                            </span>
+                            :
+                            <span className="product-price">
+                                <span className='product-price-custom'>${product.price} </span>
+                            </span>
+
+                    }
                     <a onClick={() => dispatch({ fn: null, type: 'insertCart', payload: { product } })} className="button-add-to-cart">ADD TO CART</a>
                 </div>
             </div>

@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.css">
   <link rel="stylesheet" href="/css/animate.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="./css/frontend_custom.css">
   <!-- Login Page CSS -->
   <link rel="stylesheet" type="text/css" href="/css/iofrm-style.css">
   <link rel="stylesheet" type="text/css" href="/css/iofrm-theme19.css">
@@ -31,6 +32,28 @@
   <link href="/backend/css/materialdesignicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/backend/css/custom.css">
 
+  <!-- Sweet Alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    window.s_alert = function (title = 'Successfully done', icon = 'success') {
+      Toast.fire({
+        icon: 'success',
+        title: 'Addedd To Cart'
+      })
+    }
+  </script>
 
   <!-- Project Title -->
   <title>React App</title>

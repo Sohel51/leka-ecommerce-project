@@ -1,0 +1,13 @@
+.product .product-info .product-price-custom {
+    font-weight: bold;
+}
+
+.product .product-info .product-price-custom-discount {
+    text-decoration: line-through;
+    color: tomato;
+    font-weight: bold;
+}
+.product .product-info .product-discountprice-custom {
+    color: rgb(84 193 188);
+    font-weight: bold;
+}

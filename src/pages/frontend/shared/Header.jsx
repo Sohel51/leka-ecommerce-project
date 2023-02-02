@@ -18,7 +18,7 @@ const Header = () => {
   }
 
   const { state, dispatch } = useFrontendContext();
-  const { carts } = state;
+  const { carts, total_cart_ammount } = state;
 
   return (
     <div>
@@ -97,7 +97,7 @@ const Header = () => {
                             <div className="product-info">
                               <h5 className="product-name"><a href="#">{product.title}</a></h5>
                               <span className="price">${product.price}</span>
-                              <span className="qty">Qty: 1 - Size: L</span>
+                              <span className="qty">{product.qty} x {product.discountPrice || product.price} = {product.qty * (product.discountPrice || product.price)}</span>
                               <a className="remove"
                                 onClick={() => dispatch({ fn: null, type: 'removeCart', payload: { index } })}
                                 href="#">remove</a>
@@ -108,10 +108,10 @@ const Header = () => {
                     </ul>
                     <p className="sub-toal-wapper">
                       <span>SUBTOTAL</span>
-                      <span className="sub-toal">$180.00</span>
+                      <span className="sub-toal">${total_cart_ammount}</span>
                     </p>
-                    <a href="#" className="btn-view-cart">VIEW SHOPPING CART</a>
-                    <a href="#" className="btn-check-out">PROCESS TO CHECK OUT</a>
+                    <Link to="/cart" className="btn-view-cart">VIEW SHOPPING CART</Link>
+                    <Link to="/checkout" className="btn-check-out">PROCESS TO CHECK OUT</Link>
                   </div>
                 </div>
                 {/* ./Mini cart */}

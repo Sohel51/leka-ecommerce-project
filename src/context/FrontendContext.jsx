@@ -12,17 +12,32 @@ const saveCart = (dispatch, type, payload) => {
 
 const reducers = (state, { type, payload }) => {
     let tempState = { ...state };
-    let { carts, wishListh, showAlert, showModal } = tempState;
+    let { carts, total_cart_ammount, wishListh, showAlert, showModal } = tempState;
     switch (type) {
         case 'insertCart':
-            const { _id, price, title, image } = payload.product;
-            carts.push({
-                _id, price, title, image
-            })
+            const { _id, price, discount, discountPrice, title, image, } = payload.product;
+
+            let qty = 1;
+            let product = carts.find(i => i._id == _id);
+            product ? qty = product.qty++ : qty = 1;
+
+            !product &&
+                carts.unshift({
+                    _id, price, discountPrice, title, image, qty
+                });
+
+            tempState.total_cart_ammount = carts.reduce((total, i) => {
+                return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
+            }, 0)
+
+            window.s_alert('Added to cart');
             return tempState
 
         case 'removeCart':
             carts.splice(payload.index, 1);
+            tempState.total_cart_ammount = carts.reduce((total, i) => {
+                return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
+            }, 0)
             return tempState
 
         case 'toggleAlert':
@@ -38,6 +53,7 @@ export const FrontendContext = createContext(null);
 const FrontendContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducers, {
         carts: [],
+        total_cart_ammount: 0,
         wishListh: [],
         showAlert: false,
         showModal: false,
