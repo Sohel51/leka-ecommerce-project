@@ -1,3 +1,5 @@
-const useLocalStorageGet = (key) => {
-    return  window.localStorage.getItem(key);
+const UseLocalStorageGet = (key) => {
+    return  JSON.parse (window.localStorage.getItem(key));
 }
+
+export default UseLocalStorageGet

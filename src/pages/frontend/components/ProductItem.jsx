@@ -6,7 +6,7 @@ const ProductItem = ({ product }) => {
     const { dispatch } = useFrontendContext();
     return (
         <>
-            <div className="product">
+            <div className="product" style={{border: "0px solid black", overflow: 'hidden', marginBottom: '30px'}}>
                 <div className="product-thumb">
                     <a href="single-product.html">
                         <img className='h-400' src={resourceLink(product.image)} alt="" />
@@ -35,6 +35,7 @@ const ProductItem = ({ product }) => {
                     <a onClick={() => dispatch({ fn: null, type: 'insertCart', payload: { product } })} className="button-add-to-cart">ADD TO CART</a>
                 </div>
             </div>
+            <div style={{clear:"both"}}></div>
         </>
     )
 }

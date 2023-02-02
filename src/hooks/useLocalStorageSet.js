@@ -1,3 +1,5 @@
-const useLocalStorageSet = (data) => {
-    window.localStorage.setItem(JSON.stringify(data));
+const UseLocalStorageSet = (key, data) => {
+    window.localStorage.setItem(key, JSON.stringify(data));
 }
+
+export default UseLocalStorageSet

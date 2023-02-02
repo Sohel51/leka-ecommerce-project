@@ -1,5 +1,7 @@
 import React, { createContext } from 'react'
 import { useReducer } from 'react';
+import UseLocalStorageGet from '../hooks/UseLocalStorageGet';
+import UseLocalStorageSet from '../hooks/UseLocalStorageSet';
 
 const saveCart = (dispatch, type, payload) => {
     fetch('http://localhost:3002/test')
@@ -14,6 +16,10 @@ const reducers = (state, { type, payload }) => {
     let tempState = { ...state };
     let { carts, total_cart_ammount, wishListh, showAlert, showModal } = tempState;
     switch (type) {
+        case 'loadCart' :
+            tempState.carts = UseLocalStorageGet('carts');
+            return tempState
+
         case 'insertCart':
             const { _id, price, discount, discountPrice, title, image, } = payload.product;
 
@@ -30,6 +36,8 @@ const reducers = (state, { type, payload }) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
 
+
+            UseLocalStorageSet('carts', carts)
             window.s_alert('Added to cart');
             return tempState
 
@@ -41,6 +49,7 @@ const reducers = (state, { type, payload }) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
 
+            UseLocalStorageSet('carts', carts)
             window.s_alert('Product Updated');
             return tempState
 
@@ -49,6 +58,8 @@ const reducers = (state, { type, payload }) => {
             tempState.total_cart_ammount = carts.reduce((total, i) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
+
+            UseLocalStorageSet('carts', carts)
             return tempState
 
         case 'toggleAlert':

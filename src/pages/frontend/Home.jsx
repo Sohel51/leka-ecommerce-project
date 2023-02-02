@@ -49,18 +49,14 @@ const Home = () => {
                             <li role="presentation"><a href="#tab-product-4" aria-controls="tab-product-4" role="tab" data-toggle="tab">ACCESSORIES</a></li>
                             <li role="presentation"><a href="#tab-product-5" aria-controls="tab-product-5" role="tab" data-toggle="tab">CROP TOP</a></li>
                         </ul>
-                        <div className="tab-content">
-                            <div id="tab-product-1" role="tabpanel" className="tab-pane fade in active">
-                                <div className="product-slide row" data-responsive="{&quot;0&quot;:{&quot;items&quot;:1},&quot;600&quot;:{&quot;items&quot;:3},&quot;1000&quot;:{&quot;items&quot;:4}}" data-margin={30} data-items={4} data-nav="true">
-                                    {
-                                        products.map((product, index) => {
-                                            return <div key={index} className="col-md-3">
-                                                <ProductItem index={index} product={product}></ProductItem>
-                                            </div>
-                                        })
-                                    }
-                                </div>
-                            </div>
+                        <div className="row" >
+                            {
+                                products.map((product, index) => {
+                                    return <div key={index} className="col-md-3">
+                                        <ProductItem index={index} product={product}></ProductItem>
+                                    </div>
+                                })
+                            }
                         </div>
                     </div>
                 </div>
