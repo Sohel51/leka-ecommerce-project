@@ -11,3 +11,11 @@
     color: rgb(84 193 188);
     font-weight: bold;
 }
+
+.float-right{
+    float: right;
+}
+
+.cart-collaterals {
+    padding-top: 10px;
+}

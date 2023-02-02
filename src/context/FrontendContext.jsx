@@ -33,6 +33,17 @@ const reducers = (state, { type, payload }) => {
             window.s_alert('Added to cart');
             return tempState
 
+        case 'update_cart_qty':
+            console.log(payload);
+            carts[payload.index].qty = payload.qty
+
+            tempState.total_cart_ammount = carts.reduce((total, i) => {
+                return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
+            }, 0)
+
+            window.s_alert('Product Updated');
+            return tempState
+
         case 'removeCart':
             carts.splice(payload.index, 1);
             tempState.total_cart_ammount = carts.reduce((total, i) => {
