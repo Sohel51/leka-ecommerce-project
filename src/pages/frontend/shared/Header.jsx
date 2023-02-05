@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext';
@@ -19,6 +19,8 @@ const Header = () => {
 
   const { state, dispatch } = useFrontendContext();
   const { carts, total_cart_ammount } = state;
+
+  const main_menu = createRef();
 
   return (
     <div>
@@ -64,8 +66,8 @@ const Header = () => {
                 </div>
               </div>
               <div className="col-sm-10 main-menu-wapper">
-                <a href="#" className="mobile-navigation"><i className="fa fa-bars" /></a>
-                <nav id="main-menu" className="main-menu">
+                <a href="#" onClick={()=>main_menu.current.classList.toggle('show')} className="mobile-navigation"><i className="fa fa-bars" /></a>
+                <nav id="main-menu" ref={main_menu} className="main-menu">
                   <ul className="navigation">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/products'>Products</Link></li>
