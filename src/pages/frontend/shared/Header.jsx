@@ -44,9 +44,13 @@ const Header = () => {
                       </a>
                     </li>
                 }
+                {
+                  checkAuth.isAuth && checkAuth.data.role === 'admin' ?
+                    <li><Link to='/admin'><i className="fa fa-cog" /> ADMIN</Link></li>
+                    :
+                    <li><Link to='/profile'><i className="fa fa-lock" />User PROFILE</Link></li>
+                }
                 <li><Link to='/register'><i className="fa fa-user" /> REGISTER</Link></li>
-                <li><Link to='/profile'><i className="fa fa-lock" />User PROFILE</Link></li>
-                <li><Link to='/admin'><i className="fa fa-cog" /> ADMIN</Link></li>
               </ul>
             </div>
           </div>
@@ -62,11 +66,11 @@ const Header = () => {
             <div className="row">
               <div className="col-sm-12">
                 <div className="logo">
-                  <a href="#"><img src="/images/logo.png" alt="" /></a>
+                  <Link to='/'><img src="/images/logo.png" alt="" /></Link>
                 </div>
               </div>
               <div className="col-sm-10 main-menu-wapper">
-                <a href="#" onClick={()=>main_menu.current.classList.toggle('show')} className="mobile-navigation"><i className="fa fa-bars" /></a>
+                <a href="#" onClick={() => main_menu.current.classList.toggle('show')} className="mobile-navigation"><i className="fa fa-bars" /></a>
                 <nav id="main-menu" ref={main_menu} className="main-menu">
                   <ul className="navigation">
                     <li><Link to='/'>Home</Link></li>
@@ -75,7 +79,7 @@ const Header = () => {
                     <li><Link to='/checkout'>Check Out</Link></li>
                     <li><Link to='/cart'>Cart</Link></li>
                     <li><Link to='/contact'>Contact Us</Link></li>
-                    <li><a onClick={tokentCheck} href='#/'>Test Token</a></li>
+                    <li><a onClick={tokentCheck} href='#/'></a></li>
                   </ul>
                 </nav>
               </div>

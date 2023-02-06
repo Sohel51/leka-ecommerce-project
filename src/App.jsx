@@ -57,9 +57,6 @@ function App() {
             </FrontendContextProvider>}
           >
             <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgetpass" element={<ForgetPass />} />
             <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
             <Route path="/checkout" element={<CheckOut />} />
@@ -76,6 +73,9 @@ function App() {
               <Route path="wishlist" element={<WishList></WishList>}></Route>
             </Route>
           </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgetpass" element={<ForgetPass />} />
           <Route path="/admin" element={
             <AuthAdminRoute>
               <Admin></Admin>

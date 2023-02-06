@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext';
-import Header from '../frontend/shared/Header'
 
 const Profile = () => {
   const { logout } = useContext(AuthContext);
 
   return (
     <div className="container">
-      <Header></Header>
       <div id="backendWrap">
         <div className="ec-header-fixed ec-sidebar-light ec-header-light" id="body">
           <div className="wrapper">
@@ -80,9 +78,6 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <header className='p-3'>
-                <Outlet></Outlet>
-              </header>
             </div> {/* End Wrapper */}
           </div>
         </div>

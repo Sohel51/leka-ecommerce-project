@@ -80,7 +80,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-bottom">
                         <div className="coppyright">
-                            <p>© LEKA E-COMMERCE TEMPLATE. Powered By Kutethemes</p>
+                            <p>© LEKA E-COMMERCE TEMPLATE. Created By MD. SOHEL RANA</p>
                         </div>
                         <div className="payment_methods">
                             <img src="/images/payment_methods.png" alt="" />
