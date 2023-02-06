@@ -24,15 +24,15 @@ const reducers = (state, { type, payload }) => {
             const { _id, price, discount, discountPrice, title, image, } = payload.product;
 
             let qty = 1;
-            let product = carts.find(i => i._id == _id);
+            let product = carts?.find(i => i._id == _id);
             product ? qty = product.qty++ : qty = 1;
 
             !product &&
-                carts.unshift({
+                carts?.unshift({
                     _id, price, discountPrice, title, image, qty
                 });
 
-            tempState.total_cart_ammount = carts.reduce((total, i) => {
+            tempState.total_cart_ammount = carts?.reduce((total, i) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
 
@@ -45,7 +45,7 @@ const reducers = (state, { type, payload }) => {
             console.log(payload);
             carts[payload.index].qty = payload.qty
 
-            tempState.total_cart_ammount = carts.reduce((total, i) => {
+            tempState.total_cart_ammount = carts?.reduce((total, i) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
 
@@ -54,8 +54,8 @@ const reducers = (state, { type, payload }) => {
             return tempState
 
         case 'removeCart':
-            carts.splice(payload.index, 1);
-            tempState.total_cart_ammount = carts.reduce((total, i) => {
+            carts?.splice(payload.index, 1);
+            tempState.total_cart_ammount = carts?.reduce((total, i) => {
                 return i.discountPrice ? total += i.discountPrice * i.qty : total += i.price * i.qty;
             }, 0)
 

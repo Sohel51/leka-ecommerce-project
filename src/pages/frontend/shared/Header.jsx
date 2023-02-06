@@ -102,7 +102,7 @@ const Header = () => {
                   <div className="mini-cart-content">
                     <ul className="list-cart-product">
                       {
-                        carts.map((product, index) => {
+                        carts?.map((product, index) => {
                           return <li key={index}>
                             <div className="product-thumb">
                               <a href="#"><img src={resourceLink(product.image)} alt="" /></a>

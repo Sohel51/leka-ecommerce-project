@@ -66,7 +66,7 @@ const Cart = () => {
             </thead>
             <tbody>
               {
-                carts.map((product, index) => {
+                carts?.map((product, index) => {
                   return <tr key={index} className="cart_item">
                     <td className="product-thumbnail">
                       <a href="#">

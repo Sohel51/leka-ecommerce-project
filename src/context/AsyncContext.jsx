@@ -16,14 +16,14 @@ const reducers = (state, { type, payload }) => {
     let { carts, wishListh, showAlert, showModal } = tempState;
     switch (type) {
         case 'insertCart':
-            carts.push({
-                productId: carts.length + 1,
+            carts?.push({
+                productId: carts?.length + 1,
                 price: Math.random(),
             })
             return tempState
 
         case 'deleteCart':
-            carts.splice(payload.index, 1);
+            carts?.splice(payload.index, 1);
             return tempState
 
         case 'toggleAlert':
