@@ -17,7 +17,7 @@ const reducers = (state, { type, payload }) => {
     let { carts, total_cart_ammount, wishListh, showAlert, showModal } = tempState;
     switch (type) {
         case 'loadCart' :
-            tempState.carts = UseLocalStorageGet('carts');
+            tempState.carts = UseLocalStorageGet('carts')||[];
             return tempState
 
         case 'insertCart':
