@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@tinymce/tinymce-react": "^4.3.0",
     "bootstrap": "^5.2.3",
+    "firebase": "^9.17.1",
     "fs-extra": "^11.1.0",
     "html-react-parser": "^3.0.8",
     "moment": "^2.29.4",

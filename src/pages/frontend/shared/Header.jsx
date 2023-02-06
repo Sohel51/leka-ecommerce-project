@@ -91,7 +91,14 @@ const Header = () => {
                 {/* ./Icon search */}
                 {/* Mini cart */}
                 <div className="mini-cart">
-                  <a className="icon" href="#">Cart <span className="count">{carts.length}</span></a>
+                  <a className="icon" href="#">Cart <span className="count">
+                    {
+                      carts?
+                      carts.length
+                      :
+                      0
+                    }
+                    </span></a>
                   <div className="mini-cart-content">
                     <ul className="list-cart-product">
                       {
