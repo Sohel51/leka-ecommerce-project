@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { createContext } from 'react'
 
 const saveCart = (dispatch, type, payload) => {
-    fetch('http://localhost:3002/test')
+    fetch('/test')
     .then(res => res.json())
     .then(res => {
         console.log(res);

@@ -57,7 +57,7 @@ const AllCategory = () => {
                     </thead>
                     <tbody>
                         {
-                            data.map(i => {
+                            data?.map(i => {
                                 return (
                                     <tr key={i._id}>
                                         <td>{i._id}</td>
